@@ -1,0 +1,1 @@
+{'greenhouse_id': '1', 'moist_min': '65', 'moist_max': '70', 'light_min': '0', 'light_max': '0', 'hum_min': '0', 'hum_max': '0', 'temp_min': '0', 'temp_max': '0', 'windSpeed_min': '0', 'windSpeed_max': '0', 'co2_min': '0', 'co2_max': '0', 'ph_min': '0', 'ph_max': '0', 'ec_min': '0', 'ec_max': '0', 'date': '1542199708', 'changed': '1'}
