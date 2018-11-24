@@ -1,3 +1,8 @@
 Error: log test, time: 1542810113.2097132
 Error: log test, time: 1542810148
 Error: test test, time: 1542810389, Code: 001
+ :  , time: 1543066804, Code: 000
+Error: Not registred the error code, time: 1543066975, Code: 000
+Error: Not registred the error code, time: 1543067228, Code: 000
+Error: Not registred the error code, time: 1543067308, Code: 000
+Error: Not registred the error code, time: 1543067470, Code: 000
