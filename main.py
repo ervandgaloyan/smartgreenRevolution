@@ -46,13 +46,15 @@ def update_error_codes():
         f.write(str(r))
     return r
 
-def add_log(code, type = ' ', log):
+def add_log(code, type = ' ', log = ' ' ):
     # add error to file & send to the server via api
-    if(code == '000'):
+    if(code != '000'):
         try:
             type = error_codes[code][type]
             log = error_codes[code][log]
-
+        except:
+            type = 'Error'
+            log = 'Not registred the error code'
     with open(ms['log'], 'a') as f:
         f.write(type + ": " + log + ", time: " + str(int(time.time())) + ", Code: " + code + "\n")
 
@@ -66,3 +68,4 @@ ms = read_main_settings()
 #print(settings)
 #print(settings['moist_max'])
 #add_log("Error","test test","001")
+print(update_error_code())
