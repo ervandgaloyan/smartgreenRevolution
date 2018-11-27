@@ -76,6 +76,23 @@ def send_data(data, sensor_id):
         return 1
     else:
         return r.status_code
+    
+    
+#experimental multithreading
+class BackgroundUpdateChecker(object):
+    def __init__(self, interval=3600):
+        self.interval = interval
+        thread = threading.Thread(target=self.run, args=())
+        thread.daemon = True #prevents from joining
+        thread.start()
+        
+    def run(self):
+        while True:
+            update_settings()
+            time.sleep(self.interval)
+#to start background checks create a BackGroundUpdateChecker object
+#background checks will terminate automatically when the main thread exits
+#for future - make BackgroundUpdateChecker a Singleton
 ms = read_main_settings()
 print(update_error_codes())
 #update_settings()
@@ -85,3 +102,7 @@ print(update_error_codes())
 #add_log('000')
 #print(update_error_codes())
 #print(send_data(65,1))
+
+
+
+
