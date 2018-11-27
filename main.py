@@ -77,6 +77,7 @@ def send_data(data, sensor_id):
     else:
         return r.status_code
 ms = read_main_settings()
+print(update_error_codes())
 #update_settings()
 #settings = read_settings()
 #print(settings)
