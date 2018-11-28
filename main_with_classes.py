@@ -1,4 +1,4 @@
-import requests, ast, time
+import requests, ast, time, threading
 
 def read_main_settings():
     # read main settings from file main_settings.sg
