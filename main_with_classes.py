@@ -130,18 +130,23 @@ class RelayController:
         #if something_else: set_relay_off(some_other_relay)
 	
 	
-class BackgroundSensorCheck():
-	def __init__(self,interval=900):
-	    self.interval = interval
+class BackgroundSensorCheck(DartaRetriever):
+	def __init__(self,sensor_list,relay_list,interval=900):
 	    super.__init__(sensor_list,relay_list)
+	    self.interval = interval
             thread = threading.Thread(target=self.run, args=())
             thread.daemon = True #prevents from joining
             thread.start()
 	
-	def run():
-	    relay_controller=RelayController()
-	    for s in sensor:
+	def run_full_sensor_check():
+	    relay_controller=RelayController(self.relays)
+	    for s in self.sensors:
+		relay_controller.check_sensor(s)
 		
+	def run():
+	    while True:
+	        self.run_full_sensor_check()
+		time.sleep(self.interval)
 ms=read_main_settings()
 #update_checker=BackgroundUpdateChecker()
 #messenger=Messenger()
