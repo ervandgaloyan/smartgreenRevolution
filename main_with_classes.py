@@ -147,6 +147,8 @@ class BackgroundSensorCheck(DartaRetriever):
 	    while True:
 	        self.run_full_sensor_check()
 		time.sleep(self.interval)
+		
+		
 ms=read_main_settings()
 #update_checker=BackgroundUpdateChecker()
 #messenger=Messenger()
