@@ -103,18 +103,18 @@ class BackgroundUpdateChecker:
 
     
     
-class BackgroundSensorChecker:
-    def __init__(self,interval=900):
-        pass
-        self.interval = interval
-        self.process = Process(target=self.run, args=())
-        self.process.start()
+#class BackgroundSensorChecker:
+#    def __init__(self,interval=900):
+#        pass
+#        self.interval = interval
+#        self.process = Process(target=self.run, args=())
+#        self.process.start()
         
     
-    def run(self):
-        while True:
-            print('checking the sensors...')
-            time.sleep(self.interval)
+#    def run(self):
+#        while True:
+#            print('checking the sensors...')
+#            time.sleep(self.interval)
             
          
  
@@ -124,12 +124,12 @@ def main():
     print("launch anything you need from here")
     messenger=Messenger()
     bguc=BackgroundUpdateChecker(2)
-    bgsc=BackgroundSensorChecker(5)   
+    #bgsc=BackgroundSensorChecker(5)   
     while True: 
        print('press q to exit')
        a=input()
        if(a=='q'):
-           bgsc.process.terminate()
+           #bgsc.process.terminate()
            bguc.process.terminate()
            break
             
