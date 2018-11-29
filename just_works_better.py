@@ -5,11 +5,7 @@ def read_main_settings():
     # read main settings from file main_settings.sg
     with open('main_settings.sg', 'r') as f:
         r = f.read()
-        try:
-            ret = ast.literal_eval(r)
-        except:
-            self.add_log("001")
-            ret = 0
+        ret = ast.literal_eval(r)
         return ret
     
     
@@ -104,44 +100,21 @@ class BackgroundUpdateChecker:
             self.update_manager.update_settings()
             time.sleep(self.interval)           
     
-class DataRetriever:
-    def __init__(self,sensor_list,relay_list):
-        pass
-    
-    def get_relay_status(self,relay):
-        pass
-    
-    def get_sensor_data(self,sensor):
-        pass       
 
-class RelayController:
-    def __init__(self,relay_list):
-        pass
-    
-    def set_relay_on(self,relay):
-        pass
-    
-    def set_relay_off(self,relay):
-        pass
-
-    def check_sensor(self,sensor):
-        pass
-        #if something: set_relay_on(some_relay)
-        #if something_else: set_relay_off(some_other_relay)
     
     
-class BackgroundSensorChecker:
-    def __init__(self,interval=900):
-        pass
-        self.interval = interval
-        self.process = Process(target=self.run, args=())
-        self.process.start()
+#class BackgroundSensorChecker:
+#    def __init__(self,interval=900):
+#        pass
+#        self.interval = interval
+#        self.process = Process(target=self.run, args=())
+#        self.process.start()
         
     
-    def run(self):
-        while True:
-            print('checking the sensors...')
-            time.sleep(self.interval)
+#    def run(self):
+#        while True:
+#            print('checking the sensors...')
+#            time.sleep(self.interval)
             
          
  
@@ -151,12 +124,12 @@ def main():
     print("launch anything you need from here")
     messenger=Messenger()
     bguc=BackgroundUpdateChecker(2)
-    bgsc=BackgroundSensorChecker(5)   
+    #bgsc=BackgroundSensorChecker(5)   
     while True: 
        print('press q to exit')
        a=input()
        if(a=='q'):
-           bgsc.process.terminate()
+           #bgsc.process.terminate()
            bguc.process.terminate()
            break
             
