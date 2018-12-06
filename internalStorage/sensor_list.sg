@@ -1,1 +1,1 @@
-
+[{'sensor_id': '1', 'greenhouse_id': '1', 'sens_type': '1', 'x': '1', 'y': '1', 'install_date': '1542199708'}, {'sensor_id': '2', 'greenhouse_id': '1', 'sens_type': '2', 'x': '15', 'y': '6', 'install_date': '4545454'}]
