@@ -1,1 +1,1 @@
-{'server': 'http://smartgreen.cc/demo/api', 'greenhouse_id': '1', 'settings': 'settings.sg', 'error_codes': 'error_codes.sg', 'log': 'log.sg', 'updated': 'updated.sg'}
+{'server': 'http://smartgreen.cc/demo/api', 'greenhouse_id': '1', 'greenhouse': 'greenhouse.sg', 'settings': 'settings.sg', 'error_codes': 'error_codes.sg', 'log': 'log.sg', 'updated': 'updated.sg', 'notification': 'notification.sg', 'relay': 'relay.sg', 'sensor_list': 'sensor_list.sg'}
