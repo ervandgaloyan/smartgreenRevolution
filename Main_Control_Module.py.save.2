@@ -12,7 +12,7 @@ class Manager:
             self.main_settings = ret
             self.test_server = "google.com"
 
-    def internet_connection_is_present(self):
+    def internet_connection_is_present():
     # check if internet connection is present by trying to connect to a test server
         try:
             host = socket.gethostbyname(self.test_server)
@@ -57,7 +57,7 @@ class Manager:
     
     def update_settings(self):
         # update greenhouse settings from server
-        if(self.internet_connection_is_present() is True):
+        if(Manager.internet_connection_is_present() is True):
             r = requests.get(url=self.main_settings['server']+'/api_GET.php?getSettings&greenhouse_id='+self.main_settings['greenhouse_id'])
             r = r.json()[0]
             with open(self.main_settings['settings'], 'w') as f:
@@ -68,7 +68,7 @@ class Manager:
     
     def update_error_codes(self):
     # update error codes from server
-        if(Manager().internet_connection_is_present() is True):
+        if(Manager.internet_connection_is_present() is True):
             r = requests.get(url=self.main_settings['server']+'/api_GET.php?getErrorCodes')
             r = r.json()[0]
             with open(self.main_settings['error_codes'], 'w') as f:
@@ -84,11 +84,11 @@ class Messanger:
    # def __init__(self):
        # self.connection_manager=Manager()
            
-    def send_sensor_data_to_server(self,sensor_id, data):
-        if(Manager().internet_connection_is_present() is True):
-            print('sending...')
-            date = int(time.time())
-            r = requests.get(url = Manager().main_settings['server']+'/api_SET.php?setSensorData&sensor_id='+str(sensor_id)+'&data='+str(data)+'&date='+str(date))
+    def send_sensor_data_to_server(sensor_id, data):
+        if(Manager.internet_connection_is_present() is True):
+           
+ date = int(time.time())
+            r = requests.get(url=self.connection_manager.main_settings['server']+'/api_SET.php?setSensorData&sensor_id='+str(sensor_id)+'&data='+str(data)+'&date='+str(date))
             if(r.status_code == 200):
                 return 1             
             else:
@@ -99,9 +99,9 @@ class Messanger:
             return "No Internet connection"
             
             
-    def send_relay_state_to_server(self,relay,state):
-        if(Manager().internet_connection_is_present() is True):
-            r = requests.get(url = Manager().main_settings['server']+'/api_SET.php?setRelayState&greenhouse_id='+Manager().main_settings['greenhouse_id']+'&state='+str(state))
+    def send_relay_state_to_server(relay,state):
+        if(Manager.internet_connection_is_present() is True):
+            r = requests.get(url=self.connection_manager.main_settings['server']+'/api_SET.php?setRelayState&greenhouse_id='+self.connection_manager.main_settings['greenhouse_id']+'&state='+str(state))
             if(r.status_code == 200):
                 return 1
             else:
@@ -150,7 +150,7 @@ class DataRetriever:
     def on_message(self, client, userdata, message):
     # DataRetriever sends every bit of data it gets to the server
         if(self.is_subscribed_to(message.topic[:-1])):
-            Messanger().send_sensor_data_to_server(self.get_sender_id(str(message.topic)),int(message.payload))
+            Messanger.send_sensor_data_to_server(self.get_sender_id(str(message.topic)),int(message.payload))
            
     def establish_connection(self):
     # the on_message field of mqtt paho's client is a function that is invoked when the client recieves publication from a topic it is subscribed to
@@ -202,11 +202,11 @@ class DataProcessor:
         return from_topic[self.get_id_token(from_topic):]
 
     def turn_on(self,relay):
-        Messanger().send_relay_state_to_server(relay,'1')
+        Messanger.send_relay_state_to_server(relay,'1')
         self.client.publish('control', str(relay)+'1')
 
     def turn_off(self,relay):
-        Messanger().send_relay_state_to_server(relay,'0')
+        Messanger.send_relay_state_to_server(relay,'0')
         self.client.publish('control', str(relay)+'0')
 
     def process_data(self):
@@ -233,7 +233,6 @@ class DataProcessor:
 
     def on_message(self, client, userdata, message):
         self.update_data_settings() # update settings before processing data
-        print('processing...')
         if(self.is_subscribed_to(message.topic[:-1])):
             self.sender_id = int(self.get_sender_id(str(message.topic)))
             self.sent_data = int(message.payload)
@@ -296,7 +295,7 @@ class BackgroundUpdateChecker:
 #    client.subscribe("co2")
         #client.subscribe("ph")
         #client.subscribe("ec")
-        #client.subscribe("wijndSpeed")
+        #client.subscribe("windSpeed")
         #client.subscribe("windDir")
 
 def main():
