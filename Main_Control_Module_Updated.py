@@ -180,20 +180,20 @@ class RelayController:
 			self.relays_access_priority[device_list[i-1]] = 'program'
 			#self.relays_access_priority[str(i)] = 'program'
 			
-	def the_relay_controlling(self,device):
-	    return self.relays[device]
+    def the_relay_controlling(self,device):
+	return self.relays[device]
 		
-	def change_relays_access_priority(self, device ,priority):
+    def change_relays_access_priority(self, device ,priority):
         self.relays_access_priority[device] = priority
-		if(device_or_relay == 'infrared lamp'):
-		    self.relays_access_priority['cooler'] = priority
-		if(device_or_relay == 'cooler'):
-		    self.relays_access_priority['infrared lamp'] = priority			
+	if(device_or_relay == 'infrared lamp'):
+            self.relays_access_priority['cooler'] = priority
+	if(device_or_relay == 'cooler'):
+	    self.relays_access_priority['infrared lamp'] = priority			
 		
-	def seize_control_over_relay(self,relay):
+    def seize_control_over_relay(self,relay):
         self.relays_access_priority[str(relay)] = 'program'	
 		
-	def seize_control_over_device(self,device):
+    def seize_control_over_device(self,device):
         self.relays_access_priority[device] = 'program'	
 		
     def turn_on(self,device,publication):
@@ -324,22 +324,22 @@ class HttpRequestHandler(BaseHTTPRequestHandler):
 
 class PAPI:
 
-    class HttpRequestHandler(BaseHTTPRequestHandler):
-	    def do_GET(self):
-	        if(self.path=='something'):
-		    #respond accordingly
-		    elif(self.path=='something_else')
-		    #respond accordingly
-		    elif(self.path=='you got my point')
-		    #respond accordingly
+    #class HttpRequestHandler(BaseHTTPRequestHandler):
+    #    def do_GET(self):
+    #        if(self.path=='something'):
+             #respond accordingly
+    #	     elif(self.path=='something_else')
+             #respond accordingly
+    #	     elif(self.path=='you got my point')
+             #respond accordingly
 
     def __init__(self,port = 8080):
          self.process = Process(target=self.wait_for_requests, args=())	
 		 self.port = port
 		 self.process.start()
 		 
-	def wait_for_requests():
-         self.listening_post = SocketServer.TCPServer(("", self.port), PAPI.HttpRequestHandler)
+    def wait_for_requests():
+         self.listening_post = SocketServer.TCPServer(("", self.port), HttpRequestHandler)
 		 print("starting handling http requests...")
          self.listening_post.serve_forever()		 
 		 
@@ -422,7 +422,7 @@ def main():
        if(a=='q'):
            #bgsc.process.terminate()
            bguc.process.terminate()
-		   papi.process.terminate()
+	   papi.process.terminate()
            break
  
 if __name__ == '__main__': # don't touch this line
